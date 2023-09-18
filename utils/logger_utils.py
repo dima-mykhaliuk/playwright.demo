@@ -3,8 +3,19 @@ import inspect
 import os
 
 
-def custom_logger(log_level=logging.DEBUG):
+def create_results_directory_if_none():
+    # Get the directory path where the log file should be located
+    current_dir = os.path.dirname(os.path.abspath(inspect.stack()[1].filename))
+    project_dir = os.path.dirname(current_dir)
+    results_dir = os.path.join(project_dir, 'results')
 
+    # Check if the 'results' directory exists, and create it if not
+    if not os.path.exists(results_dir):
+        os.makedirs(results_dir)
+
+
+def custom_logger(log_level=logging.DEBUG):
+    create_results_directory_if_none()
     # Get the name of the module where this method is called
     caller_frame = inspect.stack()[1]
     module_name = caller_frame[0].f_globals['__name__']
