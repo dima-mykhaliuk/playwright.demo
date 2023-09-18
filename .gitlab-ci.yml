@@ -1,5 +1,7 @@
 stages:
   - update
+  - installing_docker
+  - build
   - test
 
 update:
@@ -7,9 +9,29 @@ update:
   script:
     - git pull origin main
 
+
+installing_docker:
+  stage: installing_docker
+  script:
+    - apt-get update  # Update package list
+    - apt-get install -y docker.io  # Install Docker
+    - docker --version  # Verify Docker installation
+  tags:
+    - docker  # Specify a runner with Docker capabilities
+
+build:
+  stage: build
+  script:
+    - docker build -t my-app .
+  tags:
+    - docker  # Specify a runner with Docker capabilities
+
 test:
   stage: test
   image: mcr.microsoft.com/playwright:v1.38.0-jammy
   script:
-    - pip install -r requirements.txt  # Install project dependencies if needed
-    - pytest  # Run pytest to execute your tests
+    - docker volume create my_results_volume  # Create a results volume
+    - docker run -v my_results_volume:/results my-app pytest
+    - docker cp my_results_volume:/results ./results  # Copy results from the volume to a local directory
+  tags:
+    - docker  # Specify a runner with Docker capabilities
