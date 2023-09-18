@@ -16,4 +16,4 @@ build:
 test:
   stage: test
   script:
-    - docker run my-app pytest tests/
+    - docker run my-app pytest
