@@ -26,7 +26,7 @@ def class_setup(request):
         browser = None
         browser_type = test_config.get("browser")
         launch_options = {
-            "headless": False
+            "headless": True
         }
 
         try:
