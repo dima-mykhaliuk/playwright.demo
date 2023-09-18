@@ -1,0 +1,22 @@
+stages:
+  - update
+  - test
+
+update:
+  stage: update
+  script:
+    - git pull origin main
+
+test:
+  stage: test
+  script:
+    - git pull origin main
+    - apt-get update  # Update package list
+    - apt-get install -y docker.io  # Install Docker
+    - docker --version  # Verify Docker installation
+    - docker build -t my-app .
+    - docker volume create my_results_volume  # Create a results volume
+    - docker run -v my_results_volume:/results my-app pytest
+    - docker cp my_results_volume:/results ./results  # Copy results from the volume to a local directory
+  tags:
+    - docker  # Specify a runner with Docker capabilities
