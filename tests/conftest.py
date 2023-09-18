@@ -42,6 +42,8 @@ def class_setup(request):
             test_config["browser"] = browser
 
             yield test_config
+        except Exception as e:
+            print(e)
         finally:
             if browser:
                 browser.close()
