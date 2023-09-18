@@ -1,0 +1,15 @@
+[
+  {
+    "id": "00001",
+    "title": "Suite 1",
+    "base_route": "https://rozetka.com.ua/ua/",
+    "browser": "chromium"
+  },
+  {
+    "id": "00002",
+    "title": "Suite 2",
+    "base_route": "https://rozetka.com.ua/ua/",
+    "browser": "firefox"
+  }
+]
+
