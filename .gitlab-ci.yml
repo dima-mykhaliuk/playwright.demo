@@ -1,0 +1,19 @@
+stages:
+  - update
+  - build
+  - test
+
+update:
+  stage: update
+  script:
+    - git pull origin main  # Update code from GitHub
+
+build:
+  stage: build
+  script:
+    - docker build -t my-app .
+
+test:
+  stage: test
+  script:
+    - docker run my-app pytest tests/
