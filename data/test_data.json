@@ -3,7 +3,8 @@
     "id": "00001",
     "title": "Suite 1",
     "base_route": "https://rozetka.com.ua/ua/",
-    "browser": "chromium"
+    "browser": "chromium",
+    "headless": false
   },
   {
     "id": "00002",
