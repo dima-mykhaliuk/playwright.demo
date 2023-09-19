@@ -9,14 +9,13 @@ COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
 # Create directories for results and screenshots
-RUN mkdir -p /results /screenshots
+RUN mkdir /app/results
+RUN mkdir /app/screenshots
 
 # Copy the test code and data into the container
 COPY . /app
 
-# Set environment variables (optional)
-ENV RESULTS_DIRECTORY /results
-ENV SCREENSHOTS_DIRECTORY /screenshots
+ENV PYTHONPATH /app:$PYTHONPATH
 
-# Entry point for running tests
+
 CMD ["pytest"]

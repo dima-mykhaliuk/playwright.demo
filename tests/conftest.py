@@ -1,11 +1,12 @@
 import os
 import pytest
-import utils.logger_utils as lu
 from playwright.sync_api import sync_playwright
+
+from utils.logger_utils import custom_logger
 from utils.json_utils import read_json
 import logging
 
-logger = lu.custom_logger(logging.DEBUG)
+logger = custom_logger(logging.DEBUG)
 
 
 @pytest.fixture(scope="class")

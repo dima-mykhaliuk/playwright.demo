@@ -1,0 +1,9 @@
+version: '3'
+services:
+  playwright_tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./results:/app/results
+      - ./screenshots:/app/screenshots
